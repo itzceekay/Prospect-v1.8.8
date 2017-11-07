@@ -300,9 +300,10 @@ jQuery(document).ready(function() {
 		tmpPostAtts = JSON.parse(embedData);
 		tmpPostAtts.i 	= checkAtt(tmpPostAtts.i);
 		tmpPostAtts.c 	= checkAtt(tmpPostAtts.c);
+		tmpPostAtts.c1 	= checkAtt(tmpPostAtts.c1);
 	} else {
 			// Create default settings
-		tmpPostAtts = { d: 'l', i: 'disable', c: 'disable' };
+		tmpPostAtts = { d: 'l', i: 'disable', c: 'disable', c1: 'disable' };
 	}
 
 		// Must integrate Joins into Attribute array: { id: att ID, t: type, j: Template ID (if Join), view } ]
@@ -551,6 +552,8 @@ jQuery(document).ready(function() {
 					vApp.tmpPostAtts.i = 'disable';
 				if (vApp.tmpPostAtts.c == delAtt)
 					vApp.tmpPostAtts.c = 'disable';
+				if (vApp.tmpPostAtts.c1 == delAtt)
+					vApp.tmpPostAtts.c1 = 'disable';
 			}
 		}
 	} // compileAttOptions()
@@ -642,6 +645,7 @@ jQuery(document).ready(function() {
 					tmpPost.d = vApp.tmpPostAtts.d;
 					tmpPost.i = vApp.tmpPostAtts.i;
 					tmpPost.c = vApp.tmpPostAtts.c;
+					tmpPost.c1 = vApp.tmpPostAtts.c1;
 
 					console.log("Def: "+JSON.stringify(tmpltDef));
 					console.log("Joins: "+JSON.stringify(tmpJoins));

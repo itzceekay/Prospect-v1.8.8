@@ -277,7 +277,7 @@ class Prospect {
 			$p = array();
 			$all_prspctvs = ProspectPerspective::get_exhibit_perspectives($the_xhbt->id);
 			foreach($all_prspctvs as $the_prspctv) {
-				$p_def = array(
+				$p_def = array( 
 					'id'	=> $the_prspctv->id,
 					'l'		=> $the_prspctv->l,
 					'n'		=> $the_prspctv->note,

@@ -98,7 +98,7 @@
 		</option>
 	</select>
 	<label for="label-tmpdistcnt1"><?php _e('Additional Content1', 'prospect'); ?>: </label>
-	<select id="label-tmpdistcnt1" v-model='tmpPostAtts.c'>
+	<select id="label-tmpdistcnt1" v-model='tmpPostAtts.c1'>
 		<option v-for="thisAtt in tpCAtts">
 			{{thisAtt}}
 		</option>
