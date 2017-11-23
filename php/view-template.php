@@ -16,13 +16,15 @@
 			$display_style = $the_template->pview->d;
 			$display_image = $the_template->pview->i;
 			$display_content = $the_template->pview->c;
+			$display_content = $the_template->pview->c1;
+			
 		}
 	}
 
 		// Give title of Templates
 	echo('<h1 class="prospect">'.$the_template->def->l.'</h1><hr/>');
 
-		// Open any enclosing DIVs
+		// Open any enclosing DIV
 	switch($display_style) {
 	case 'l':
 		break;
