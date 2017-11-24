@@ -1,7 +1,7 @@
 <?php
 
 	// Exception for template not found error (used for shortcode generation)
-class NotFoundException extends Exception {}
+    class NotFoundException extends Exception {}
 
 class ProspectTemplate {
 		// CLASS METHODS

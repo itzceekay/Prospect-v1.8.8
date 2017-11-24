@@ -12,11 +12,12 @@
 		$display_style = 'l';
 		$display_image = 'disable';
 		$display_content = 'disable';
+		$display_content1 = 'disable';
 		if ($the_template->pview != null) {
 			$display_style = $the_template->pview->d;
 			$display_image = $the_template->pview->i;
 			$display_content = $the_template->pview->c;
-			$display_content = $the_template->pview->c1;
+			$display_content1 = $the_template->pview->c1;
 			
 		}
 	}
@@ -70,6 +71,9 @@
 					if ($display_content != 'disable' && isset($the_rec->att_data[$display_content])) {
 						echo('<p class="prospect-list-content">'.ProspectTemplate::get_att_val($assoc_atts, $display_content, $the_rec->att_data).'</p>');
 					}
+                    if ($display_content1 != 'disable' && isset($the_rec->att_data[$display_content1])) {
+                        echo('<p class="prospect-list-content">'.ProspectTemplate::get_att_val($assoc_atts, $display_content1, $the_rec->att_data).'</p>');
+                    }
 					echo('</div>');
 					break;
 				case 't':
@@ -81,6 +85,9 @@
 					if ($display_content != 'disable' && isset($the_rec->att_data[$display_content])) {
 						echo('<br/><span class="content">'.ProspectTemplate::get_att_val($assoc_atts, $display_content, $the_rec->att_data).'</span>');
 					}
+                    if ($display_content1 != 'disable' && isset($the_rec->att_data[$display_content1])) {
+                        echo('<br/><span class="content">'.ProspectTemplate::get_att_val($assoc_atts, $display_content1, $the_rec->att_data).'</span>');
+                    }
 					echo('</p></div>');
 					break;
 				case 'h':
