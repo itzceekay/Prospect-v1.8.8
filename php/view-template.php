@@ -46,7 +46,7 @@
 			// Get Records -- Need to order by Record ID, etc
 		$args = array('post_type' => 'prsp-record',
 						'post_status' => 'publish',
-						'meta_key' => 'record-id',
+						'meta_key' => 'P_Birthdate',
 						'orderby' => 'meta_value',
 						'order' => 'ASC',
 						'posts_per_page' => -1,
@@ -56,7 +56,7 @@
 								'compare' => '=')
 					);
 
-		$query = new WP_Query($args);
+        $query = new WP_Query($args);
 		if ($query->have_posts()) {
 			foreach ($query->posts as $rec) {
 				$the_rec = new ProspectRecord(true, $rec->ID, false, $the_template, $d_templates, $assoc_atts);
