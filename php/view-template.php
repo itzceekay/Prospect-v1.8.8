@@ -43,10 +43,14 @@
 			// Get associative array for all Attribute definitions
 		$assoc_atts = ProspectAttribute::get_assoc_defs();
 
+		if($_GET["sort"])
+		    $sort_value = $_GET["sort"];
+		else
+		    $sort_value = "record-id";
 			// Get Records -- Need to order by Record ID, etc
 		$args = array('post_type' => 'prsp-record',
 						'post_status' => 'publish',
-						'meta_key' => 'P_Birthdate',
+						'meta_key' => $sort_value,
 						'orderby' => 'meta_value',
 						'order' => 'ASC',
 						'posts_per_page' => -1,
@@ -55,7 +59,6 @@
 								'value' => $tmplt_id,
 								'compare' => '=')
 					);
-
         $query = new WP_Query($args);
 		if ($query->have_posts()) {
 			foreach ($query->posts as $rec) {
