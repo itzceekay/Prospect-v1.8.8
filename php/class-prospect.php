@@ -277,7 +277,7 @@ class Prospect {
 			$p = array();
 			$all_prspctvs = ProspectPerspective::get_exhibit_perspectives($the_xhbt->id);
 			foreach($all_prspctvs as $the_prspctv) {
-				$p_def = array( 
+				$p_def = array(
 					'id'	=> $the_prspctv->id,
 					'l'		=> $the_prspctv->l,
 					'n'		=> $the_prspctv->note,
@@ -658,7 +658,12 @@ class Prospect {
 		$this->loader->add_filter('post_row_actions', $this->admin, 'prsp_export_post', 10, 2);
 
 			// Register style for shortcode
-		wp_register_style('prsp-view-template-style', plugins_url('css/view-template.css', dirname(__FILE__)));
+			function view_template_style () {
+				wp_register_style('prsp-view-template-style', plugins_url('css/view-template.css', dirname(__FILE__)));
+				wp_enqueue_style('view-template-style', 'prsp-view-template-style');
+			}
+
+		add_action('do-view-template-style', 'view_template_style');
 	} // define_page_hooks()
 
 
