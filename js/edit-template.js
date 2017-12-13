@@ -73,7 +73,8 @@ if (!Array.prototype.find) {
 }
 
 jQuery(document).ready(function() {
-	Vue.component('icon-btn', {
+	// noinspection JSAnnotator
+    Vue.component('icon-btn', {
 		props: {
 			symbol: {
 	    		type: String,
@@ -292,7 +293,7 @@ jQuery(document).ready(function() {
 		recPostAtts.t.tcAtt = checkAtt(recPostAtts.t.tcAtt);
 	} else {
 			// Create default settings in case of new Template
-		recPostAtts = { sc: 'disable', yt: 'disable', cnt: [], t: { t1Att: 'disable', t2Att: 'disable', tcAtt: 'disable' } };
+		recPostAtts = { sc: 'disable', yt: 'disable', cnt: [], att_s: [], t: { t1Att: 'disable', t2Att: 'disable', tcAtt: 'disable' } };
 	}
 
 	embedData = jQuery('textarea[name="prsp_tmp_pview"]').val();
@@ -321,6 +322,7 @@ jQuery(document).ready(function() {
 			// Only copy Attributes that exist now
 		if (attDef) {
 			attObj.view = recPostAtts.cnt.findIndex(function(att) { return att === attDef.id; } ) != -1;
+			attObj.sort1 = recPostAtts.att_s.findIndex(function(att) { return att === attDef.id; } ) != -1;
 			attObj.t = attDef.def.t;
 			if (attDef.def.t == 'J') {
 					// Find Join entry and add template ID
@@ -336,6 +338,8 @@ jQuery(document).ready(function() {
 				attObj.j = '';
 			}
 			newAtts.push(attObj);
+
+
 		} else {
 			console.log("Attribute ID "+attID+" is undefined and will be removed from the definition.");
 		}
@@ -490,6 +494,7 @@ jQuery(document).ready(function() {
 		var curAttDefs;
 		if (update)
 			curAttDefs = vApp.tmpltAttributes;
+		    //console.log(curAttDefs);
 		else
 			curAttDefs = defTemplate.a;
 
@@ -610,11 +615,14 @@ jQuery(document).ready(function() {
 					tmpltDef.a = [];
 					var tmpJoins = [];
 					var tmpCnt = [];
+					var tmpAtt = [];
 
 					atts.forEach(function(theAtt) {
 						tmpltDef.a.push(theAtt.id);
 						if (theAtt.view)
 							tmpCnt.push(theAtt.id);
+                        if (theAtt.sort1)
+                            tmpAtt.push(theAtt.id);
 						if (theAtt.t == 'J') {
 								// Attempt to add Join Attribute to dependent Template?
 							if (tmpltDef.d) {
@@ -640,6 +648,8 @@ jQuery(document).ready(function() {
 					tmpView.t.t2Att = vApp.recPostAtts.t.t2Att;
 					tmpView.t.tcAtt = vApp.recPostAtts.t.tcAtt;
 					tmpView.cnt 	= tmpCnt;
+                    tmpView.att_s 	= tmpAtt;
+
 
 					var tmpPost = { };
 					tmpPost.d = vApp.tmpPostAtts.d;
@@ -651,6 +661,7 @@ jQuery(document).ready(function() {
 					console.log("Joins: "+JSON.stringify(tmpJoins));
 					console.log("Post: "+JSON.stringify(tmpPost));
 					console.log("View: "+JSON.stringify(tmpView));
+
 
 						// Stuff results into hidden form fields
 					jQuery('input[name="prsp_tmp_id"]').val(vApp.templateID.trim());
