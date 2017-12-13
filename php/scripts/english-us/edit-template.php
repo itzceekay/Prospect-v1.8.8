@@ -27,6 +27,7 @@
 			<th><?php _e('Type', 'prospect'); ?></th>
 			<th><?php _e('Join Dependent', 'prospect'); ?></th>
 			<th><?php _e('Display on Post', 'prospect'); ?></th>
+            <th><?php _e('Sort By', 'prospect'); ?></th>
   		</tr>
 		<tr v-for="(thisAttribute, index) in tmpltAttributes">
 			<td>{{ thisAttribute.id }}</td>
@@ -36,6 +37,7 @@
 				<span v-else-if="thisAttribute.t == 'J'"><i><?php _e('Click to choose', 'prospect'); ?></i></span>
 			</td>
 			<td><input type='checkbox' v-model='thisAttribute.view'/></td>
+            <td><input type='checkbox' v-model='thisAttribute.sort1'/></td>
 			<td>
 				<icon-btn symbol="ui-icon-arrow-1-n" v-on:click="moveAttUp(index)"><?php _e('Move Up', 'prospect'); ?></icon-btn>
 				<icon-btn symbol="ui-icon-arrow-1-s" v-on:click="moveAttDown(index)"><?php _e('Move Down', 'prospect'); ?></icon-btn>
